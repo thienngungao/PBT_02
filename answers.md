@@ -56,6 +56,7 @@ Ví dụ cụ thể (Nhóm lựa chọn giới tính):
     <input type="radio" id="female" name="gender" value="female">
     <label for="female">Nữ</label>
 </fieldset>
+```
 
 ### Câu A4 — Media
 
