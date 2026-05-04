@@ -37,11 +37,11 @@ Dự đoán khi user bấm Submit:
 
  ### Câu A3 — Accessibility
 
-**1. Tầm quan trọng của `<label for="email">` đối với Screen Reader:**
-* Về mặt kỹ thuật, thuộc tính `for` trong thẻ `<label>` sẽ được liên kết chặt chẽ với thuộc tính `id` của thẻ `<input>`.
-* Khi người khiếm thị sử dụng phần mềm đọc màn hình (Screen Reader) và dùng phím Tab di chuyển đến ô nhập liệu, phần mềm sẽ tự động dò tìm thẻ label được liên kết và đọc to nội dung lên (ví dụ: "Nhập Email, edit text"). 
-* Nếu không có sự liên kết này, máy đọc sẽ chỉ nói chung chung là "Edit text" và người dùng hoàn toàn mù tịt, không biết phải gõ thông tin gì vào ô đó.
-* *(Điểm cộng UX: Việc dùng `for` còn giúp người dùng chuột khi click vào dòng chữ của label thì con trỏ nháy sẽ tự động focus ngay vào ô input).*
+1. Tầm quan trọng của `<label for="email">` đối với Screen Reader:
++ Về mặt kỹ thuật, thuộc tính `for` trong thẻ `<label>` sẽ được liên kết chặt chẽ với thuộc tính `id` của thẻ `<input>`.
++ Khi người khiếm thị sử dụng phần mềm đọc màn hình (Screen Reader) và dùng phím Tab di chuyển đến ô nhập liệu, phần mềm sẽ tự động dò tìm thẻ label được liên kết và đọc to nội dung lên (ví dụ: "Nhập Email, edit text"). 
+Nếu không có sự liên kết này, máy đọc sẽ chỉ nói chung chung là "Edit text" và người dùng hoàn toàn mù tịt, không biết phải gõ thông tin gì vào ô đó.
++ (Điểm cộng UX: Việc dùng `for` còn giúp người dùng chuột khi click vào dòng chữ của label thì con trỏ nháy sẽ tự động focus ngay vào ô input).
 
 2. Sử dụng cặp thẻ `<fieldset>` và `<legend>`:
  Khi nào dùng: Cặp thẻ này được sử dụng để gom nhóm các phần tử form có liên quan logic với nhau thành một khối. Nó đặc biệt quan trọng và gần như bắt buộc khi bạn tạo một nhóm các lựa chọn `radio` hoặc `checkbox` để trả lời cho cùng một câu hỏi. `<fieldset>` đóng vai trò làm khung bao bọc, còn `<legend>` làm tiêu đề thông báo cho toàn bộ khối đó.
@@ -92,3 +92,58 @@ Ví dụ cụ thể (Nhóm lựa chọn giới tính):
 2 ví dụ thực tế:
   1. Trình bày một biểu đồ thống kê trong bài báo cáo tài chính, kèm dòng chú thích "Biểu đồ 1: Tăng trưởng doanh thu năm 2026" ở ngay bên dưới.
   2. Trình bày một khối thẻ sản phẩm (Product Card) trên web bán hàng, bao gồm ảnh chụp sản phẩm ở trên và phần chú thích là tên sản phẩm kèm giá tiền ở dưới (giống hệt code ví dụ của đề bài).
+
+### Giải thích Bài B1 — Form Đăng ký
+
+Tại sao HTML không thể validate "Confirm Password" (Xác nhận mật khẩu)?
+Các thuộc tính Validation của HTML5 (như `pattern`, `minlength`, `maxlength`, `required`...) hoạt động độc lập và tĩnh trên từng thẻ `<input>` riêng lẻ. HTML5 chỉ có thể kiểm tra xem định dạng người dùng nhập vào có khớp với quy tắc đã thiết lập cho chính ô đó hay không. 
+Nó hoàn toàn không có cơ chế động để lấy dữ liệu từ ô input `password` mang đi so sánh chéo với dữ liệu của ô input `confirm_password`. Để làm được việc "kiểm tra hai chuỗi nhập vào có giống hệt nhau không", bắt buộc phải sử dụng ngôn ngữ lập trình kịch bản là JavaScript để xử lý logic và bắt sự kiện.
+
+### Giải Bài C1 — Debug Form
+
+Lỗi 1: Dòng 2 – Input "Tên" không có `<label for="...">`, thiếu `id` và `name`, vi phạm accessibility và best practice.
+Sửa: `<label for="name">Tên:</label> <input type="text" id="name" name="name" required>`
+
+Lỗi 2: Dòng 1 – Thẻ `<form>` thiếu thuộc tính `action` và `method`, vi phạm best practice (trình duyệt không biết gửi dữ liệu đi đâu và bằng cách nào).
+Sửa: `<form action="#" method="POST">`
+
+Lỗi 3: Dòng 4 – Input "Email" lạm dụng `placeholder` thay cho `<label>` (người dùng screen reader sẽ không đọc được tiêu đề). Thiếu `id`, `name` và validation bắt buộc.
+Sửa: `<label for="email">Email:</label> <input type="email" id="email" name="email" placeholder="Email của bạn" required>`
+
+Lỗi 4: Dòng 6, 7 – Cặp input "Mật khẩu" không có `<label>`, thiếu `id`, `name` và không có validation độ dài tối thiểu (`minlength`).
+Sửa: 
+`<label for="pwd">Mật khẩu:</label> <input type="password" id="pwd" name="pwd" placeholder="Mật khẩu" required minlength="8">`
+`<label for="pwd_confirm">Nhập lại mật khẩu:</label> <input type="password" id="pwd_confirm" name="pwd_confirm" placeholder="Nhập lại mật khẩu" required minlength="8">`
+
+Lỗi 5: Dòng 9 – Input "Phone" dùng sai `type="text"` thay vì `type="tel"`. Dùng cứng thuộc tính `value` để làm chữ gợi ý thay vì dùng `placeholder`. Thiếu `<label>`, `id`, `name`.
+Sửa: `<label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" placeholder="0901234567" pattern="[0-9]{10}">`
+
+Lỗi 6: Dòng 11 – Thẻ `<select>` không có `<label for="...">` đi kèm, thiếu `id` để liên kết với label và thiếu `name` để gửi dữ liệu.
+Sửa: `<label for="city">Thành phố:</label> <select id="city" name="city">`
+
+Lỗi 7: Dòng 12, 13 – Các thẻ `<option>` bên trong dropdown bị thiếu thuộc tính `value`, vi phạm best practice (cần chuẩn hóa dữ liệu gửi lên server thay vì gửi text tiếng Việt có dấu).
+Sửa: 
+`<option value="hn">Hà Nội</option>`
+`<option value="hcm">TP.HCM</option>`
+
+Lỗi 8: Dòng 16 đến 18 – Phần "Tôi đồng ý điều khoản" có `<label>` nhưng lại thiếu mất thẻ `<input type="checkbox">` để người dùng thực sự tick vào.
+Sửa: `<input type="checkbox" id="terms" name="terms" required> <label for="terms">Tôi đồng ý điều khoản</label>`
+
+### Giải bài C2
+
+1. Pattern regex cho CMND/CCCD và Số tài khoản:
++ CMND/CCCD (đúng 12 chữ số): `pattern="[0-9]{12}"`
++ Số tài khoản (10-15 chữ số): `pattern="[0-9]{10,15}"`
+
+2. HTML5 validation đủ an toàn cho ứng dụng ngân hàng chưa? Tại sao?
++ KHÔNG đủ an toàn.
++ Tại sao: HTML5 Validation chỉ hoạt động ở phía Client (trình duyệt). Bất kỳ ai cũng có thể mở Developer Tools (F12) để tự tay xóa bỏ các thuộc tính bảo vệ (`required`, `pattern`, `maxlength`...) trong mã HTML. Hơn nữa, kẻ tấn công có thể bỏ qua hoàn toàn giao diện web, dùng các công cụ như Postman để gửi trực tiếp dữ liệu độc hại thẳng lên Server.
+
+3. 3 loại validation mà HTML5 KHÔNG THỂ làm được (phải dùng JavaScript):
+1.  Kiểm tra chéo (Cross-field Validation): So sánh dữ liệu giữa 2 ô input khác nhau (VD: So sánh ô "Mật khẩu" và "Xác nhận mật khẩu" xem có khớp nhau không).
+2.  Kiểm tra logic nghiệp vụ phức tạp: Kiểm tra tính hợp lệ của số thẻ tín dụng theo thuật toán Luhn, hoặc tính tuổi chính xác từ ngày sinh để xem đã đủ 18 tuổi chưa.
+3.  Kiểm tra bất đồng bộ với Database (Async/API Validation): Tự động gửi API lên server để kiểm tra xem Email hoặc số CCCD này đã từng được đăng ký trong hệ thống hay chưa ngay khi người dùng vừa gõ xong.
+
+4. 2 rủi ro bảo mật nếu chỉ validate trên Frontend mà không validate Backend:
+1.  Tấn công phá hoại hệ thống (Injection): Hacker có thể gửi các đoạn mã SQL độc hại (SQL Injection) để đánh cắp, thay đổi hoặc xóa sạch cơ sở dữ liệu ngân hàng.
+2.  Lỗ hổng logic nghiệp vụ (Business Logic Flaw): Hacker có thể cố tình sửa đổi dữ liệu gửi đi (VD: chuyển số tiền âm `-1.000.000đ` để tài khoản của mình được cộng tiền). Nếu Backend không kiểm tra lại và từ chối, hệ thống sẽ gặp thiệt hại nghiêm trọng.
