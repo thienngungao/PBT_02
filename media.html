@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang Giới Thiệu Sản Phẩm ShopTLU</title>
+    <style>
+        /* Thêm chút CSS cho trang web gọn gàng, căn giữa dễ nhìn */
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; line-height: 1.6; }
+        section { margin-bottom: 40px; padding: 20px; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        h2 { border-bottom: 2px solid #4CAF50; padding-bottom: 5px; color: #333; }
+        .logo-container { display: flex; align-items: center; gap: 15px; margin-bottom: 30px; }
+        figure { margin: 0 0 20px 0; border: 1px solid #ddd; padding: 10px; text-align: center; border-radius: 5px; background-color: #fafafa; }
+        figcaption { font-style: italic; color: #666; margin-top: 10px; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- 1. SVG INLINE: Vẽ Logo đơn giản hình tròn lồng hình vuông -->
+    <div class="logo-container">
+        <svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="30" cy="30" r="28" stroke="#4CAF50" stroke-width="4" fill="#e8f5e9" />
+            <rect x="20" y="20" width="20" height="20" fill="#4CAF50" />
+        </svg>
+        <h1>ShopTLU - Trải nghiệm Multimedia</h1>
+    </div>
+
+    <!-- 2. THẺ AUDIO: Nhạc nền giới thiệu -->
+    <section>
+        <h2>🎵 Nhạc nền cửa hàng</h2>
+        <p>Bật nhạc lên để tăng mood mua sắm nhé!</p>
+        <audio controls>
+            <source src="background_music.mp3" type="audio/mpeg">
+            <source src="background_music.ogg" type="audio/ogg">
+            Trình duyệt của bạn không hỗ trợ thẻ audio.
+        </audio>
+    </section>
+
+    <!-- 3. HÌNH ẢNH SẢN PHẨM: 3 ảnh dùng figure, figcaption, lazy load, alt chi tiết và inline style responsive -->
+    <section>
+        <h2>📸 Hình ảnh Sản phẩm Nổi bật</h2>
+        
+        <figure>
+            <img src="iphone16.jpg" alt="Điện thoại iPhone 16 Pro Max màu Titan Tự nhiên, hiển thị mặt lưng và cụm 3 camera" loading="lazy" style="max-width: 100%; height: auto;">
+            <figcaption>1. iPhone 16 Pro Max - Thiết kế Titan đẳng cấp</figcaption>
+        </figure>
+
+        <figure>
+            <img src="ps5.jpg" alt="Máy chơi game PlayStation 5 Pro màu trắng kèm tay cầm DualSense đặt trên bàn" loading="lazy" style="max-width: 100%; height: auto;">
+            <figcaption>2. PlayStation 5 Pro - Đỉnh cao giải trí gia đình</figcaption>
+        </figure>
+
+        <figure>
+            <img src="macbook.jpg" alt="Laptop MacBook Pro M3 màu Space Black đang mở màn hình hiển thị code" loading="lazy" style="max-width: 100%; height: auto;">
+            <figcaption>3. MacBook Pro M3 - Trợ thủ đắc lực cho Developer</figcaption>
+        </figure>
+    </section>
+
+    <!-- 4. VIDEO YOUTUBE: Dùng thẻ iframe -->
+    <section>
+        <h2>▶️ Video Review từ YouTube</h2>
+        <iframe width="100%" height="450" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </section>
+
+    <!-- 5. VIDEO LOCAL: Dùng thẻ video có controls, poster, và 2 source -->
+    <section>
+        <h2>🎬 Video Giới thiệu Sản phẩm (Local)</h2>
+        <video controls poster="video_thumbnail.jpg" style="max-width: 100%; height: auto;">
+            <source src="product_intro.mp4" type="video/mp4">
+            <source src="product_intro.webm" type="video/webm">
+            Trình duyệt của bạn không hỗ trợ thẻ video HTML5.
+        </video>
+    </section>
+
+</body>
+</html>
