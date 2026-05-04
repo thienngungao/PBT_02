@@ -1,0 +1,12 @@
+### Câu A1 — Input Types
+
+1. `type="email"` → Ô nhập text cơ bản, hiển thị bàn phím có nút @ trên mobile → Tự kiểm tra xem chuỗi nhập vào có ký tự @ và đúng định dạng tên miền không → Dùng cho form đăng ký tài khoản hoặc nhập email để nhận hóa đơn.
+2. `type="password"` → Ô nhập text nhưng các ký tự bị che khuất (biến thành dấu chấm hoặc dấu sao) → Không có validation đặc biệt, chủ yếu để bảo mật hiển thị → Dùng để nhập mật khẩu khi đăng nhập tài khoản mua hàng.
+3. `type="number"` → Ô text kèm hai nút mũi tên tăng/giảm ở góc, trên mobile hiện bàn phím số → Tự động chặn nhập chữ cái (chỉ nhận số), báo lỗi nếu số nằm ngoài khoảng min/max → Dùng để điều chỉnh số lượng sản phẩm muốn mua trong giỏ hàng.
+4. `type="tel"` → Ô nhập text bình thường nhưng tự động gọi bàn phím số khi dùng trên điện thoại → Không tự động validation độ dài (thường phải dùng thêm thuộc tính pattern) → Dùng để nhập số điện thoại người nhận hàng.
+5. `type="date"` → Hiển thị một bảng lịch (calendar pop-up) để click chọn ngày tháng → Ngăn người dùng nhập sai định dạng ngày tháng linh tinh → Dùng để người dùng chọn ngày mong muốn giao hàng hoặc nhập ngày sinh nhật nhận khuyến mãi.
+6. `type="radio"` → Ô tròn nhỏ, trong một nhóm các tùy chọn thì chỉ được phép tick chọn duy nhất 1 ô → Đảm bảo tính độc quyền của lựa chọn (chọn cái này thì mất cái kia) → Dùng cho phần chọn Phương thức thanh toán (Thanh toán khi nhận hàng / Chuyển khoản ngân hàng).
+7. `type="checkbox"` → Ô vuông nhỏ, cho phép tick chọn hoặc bỏ chọn độc lập nhiều ô cùng lúc → Chỉ trả về trạng thái bật/tắt (true/false) → Dùng cho mục tick "Tôi đồng ý với điều khoản dịch vụ" hoặc chọn bộ lọc sản phẩm (tick chọn hãng Apple, Samsung...).
+8. `type="file"` → Nút bấm "Choose File" mở ra cửa sổ duyệt file của máy tính/điện thoại → Có thể tự động lọc chỉ cho phép chọn ảnh hoặc video nếu dùng thêm thuộc tính accept → Dùng để khách hàng upload ảnh thực tế khi viết đánh giá (review) sản phẩm.
+9. `type="color"` → Ô vuông nhỏ hiển thị màu sắc, click vào sẽ mở ra bảng pha màu (color picker) → Bắt buộc giá trị trả về phải là một mã màu chuẩn HEX → Dùng cho tính năng cho phép khách hàng tự chọn màu sắc custom khi đặt in áo thun theo yêu cầu.
+10. `type="search"` → Ô nhập text có tích hợp thêm dấu "x" nhỏ ở góc phải để xóa nhanh nội dung → Kích hoạt nút "Tìm kiếm/Kính lúp" trên bàn phím ảo của điện thoại thay vì nút Enter → Dùng làm thanh tìm kiếm sản phẩm chính ở trên cùng (header) của trang web.
